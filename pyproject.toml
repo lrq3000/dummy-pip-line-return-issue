@@ -1,0 +1,80 @@
+# SPDX-License-Identifier: MIT
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dummypiplinereturnbug"
+version = "0.0.1a1"
+description = "Minimal example showing that pip install -e git+... changes line returns in both text and binary files at some point in the unpacking process on Windows OSes"
+authors = [
+    {name = "Stephen Karl Larroque", email = "lrq3000@gmail.com"},
+    ]
+maintainers = [
+    {name = "Stephen Karl Larroque", email = "lrq3000@gmail.com"},
+    ]
+requires-python = ">=3.7"
+license = {text = "MIT License"} # { file = "LICENSE" }
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'License :: OSI Approved :: MIT License',
+    'Environment :: Console',
+    'Operating System :: Microsoft :: Windows',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: Implementation :: PyPy',
+    'Intended Audience :: Developers',
+]
+dependencies = [
+    #"typing-extensions; python_version<'3.8'",
+    #"importlib_metadata;python_version<'3.8'",
+]
+
+[project.optional-dependencies]
+test = [  # minimum dependencies to run tests
+    "pytest",
+]
+testmeta = [  # dependencies to test meta-data. Note that some of these dependencies make cibuildwheel choke on cryptography
+    "build",
+    "twine",
+    "validate-pyproject",
+    "rstcheck",
+]
+
+[project.readme]
+file = "README.rst"
+content-type = "text/x-rst"
+
+[tool.setuptools.packages.find]
+# IMPORTANT: systematically delete `src/<project.name>.egg-info` folder before rebuilding, otherwise the list of included files will not get updated (it's in `SOURCES.txt` file in this folder)
+where = ["src"]
+include = ["dummypiplinereturnbug*"]
+#namespaces = true
+
+[tool.setuptools.package-data]
+# Check the <mypkg>.egg-info/SOURCES.txt file generated after a `build` or `pip install` to check if the following files are correctly included in the sdist.
+# Check also the list of files included by default: https://packaging.python.org/en/latest/guides/using-manifest-in/
+"*" = [
+    "*.rst",
+    "LICENSE*",
+    "README*",
+]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+    "-ra",
+    "--strict-markers",
+]
+xfail_strict = true
+testpaths = "src/dummypiplinereturnbug/tests"  # default path to look for tests if nothing is specified in commandline
+filterwarnings = [
+    "once::Warning",
+]
