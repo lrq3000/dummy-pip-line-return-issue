@@ -12,5 +12,7 @@ pytest src/dummypiplinereturnbug
 
 Tested with pip v23.0.1
 
+See this pip issue: https://github.com/pypa/pip/issues/11952
+
 ## LICENSE
 MIT License
