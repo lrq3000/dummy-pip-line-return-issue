@@ -40,6 +40,8 @@ jobs:
       run: echo "${{ matrix.python-version }}"
     - name: Test downstream package depending on reedsolo (pyFileFixity) as complementary functional unit test
       run: |
+        mkdir sub
+        cd sub  # to avoid conflicts with checked out repo
         pip install --upgrade --editable git+https://github.com/lrq3000/dummypiplinereturnbug.git#egg=dummypiplinereturnbug[test] --verbose
         pytest src/dummypiplinereturnbug
     - name: Get files contents
