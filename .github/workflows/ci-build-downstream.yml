@@ -44,9 +44,9 @@ jobs:
         cd sub  # to avoid conflicts with checked out repo
         pip install --upgrade --editable git+https://github.com/lrq3000/dummypiplinereturnbug.git#egg=dummypiplinereturnbug[test] --verbose
         pytest src/dummypiplinereturnbug
-    - name: Get files contents
+    - name: Get and display files contents (only on failure of previous step)
       id: vars
-      if: success() || failure()
+      if: failure()
       run: |
         format-hex src/dummypiplinereturnbug/dummypiplinereturnbug/tests/out/text_file.txt
         format-hex src/dummypiplinereturnbug/dummypiplinereturnbug/tests/results/pregen_text_file.txt
