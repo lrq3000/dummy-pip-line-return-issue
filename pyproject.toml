@@ -49,8 +49,8 @@ testmeta = [  # dependencies to test meta-data. Note that some of these dependen
 ]
 
 [project.readme]
-file = "README.rst"
-content-type = "text/x-rst"
+file = "README.md"
+content-type = "text/markdown"
 
 [tool.setuptools.packages.find]
 # IMPORTANT: systematically delete `src/<project.name>.egg-info` folder before rebuilding, otherwise the list of included files will not get updated (it's in `SOURCES.txt` file in this folder)
@@ -62,7 +62,7 @@ include = ["dummypiplinereturnbug*"]
 # Check the <mypkg>.egg-info/SOURCES.txt file generated after a `build` or `pip install` to check if the following files are correctly included in the sdist.
 # Check also the list of files included by default: https://packaging.python.org/en/latest/guides/using-manifest-in/
 "*" = [
-    "*.rst",
+    "*.md",
     "LICENSE*",
     "README*",
 ]
