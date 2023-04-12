@@ -20,8 +20,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["*"]  # check the list of versions: https://github.com/actions/python-versions/releases and https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md -- note that "*" represents the latest stable version of Python
-        os: [ windows-latest, ubuntu-latest] #, macos-latest ] # jobs that run on Windows and macOS runners that GitHub hosts consume minutes at 2 and 10 times the rate that jobs on Linux runners consume respectively. But it's free for public OSS repositories.
+        python-version: ["3.x"]  # check the list of versions: https://github.com/actions/python-versions/releases and https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md -- note that "*" represents the latest stable version of Python
+        os: [ windows-2022, windows-2019, ubuntu-latest] #, macos-latest ] # jobs that run on Windows and macOS runners that GitHub hosts consume minutes at 2 and 10 times the rate that jobs on Linux runners consume respectively. But it's free for public OSS repositories.
     steps:
     - uses: actions/checkout@v3  # necessary for setup-python to work, even if we do not use the checked out repo!
     - name: Set up Python ${{ matrix.python-version }}
@@ -48,8 +48,8 @@ jobs:
       id: vars
       if: failure()
       run: |
-        format-hex sub/src/dummypiplinereturnbug/dummypiplinereturnbug/tests/out/text_file.txt
-        format-hex sub/src/dummypiplinereturnbug/dummypiplinereturnbug/tests/results/pregen_text_file.txt
-        format-hex sub/src/dummypiplinereturnbug/dummypiplinereturnbug/tests/out/binary_file.bin
-        format-hex sub/src/dummypiplinereturnbug/dummypiplinereturnbug/tests/results/pregen_binary_file.bin
+        format-hex sub/src/dummypiplinereturnbug/src/dummypiplinereturnbug/tests/out/text_file.txt
+        format-hex sub/src/dummypiplinereturnbug/src/dummypiplinereturnbug/tests/results/pregen_text_file.txt
+        format-hex sub/src/dummypiplinereturnbug/src/dummypiplinereturnbug/tests/out/binary_file.bin
+        format-hex sub/src/dummypiplinereturnbug/src/dummypiplinereturnbug/tests/results/pregen_binary_file.bin
       shell: pwsh
