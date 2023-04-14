@@ -1,7 +1,7 @@
 # dummypiplinereturnbug
-Minimal example showing that pip install -e git+... changes line returns in both text and binary files at some point in the unpacking process on Windows OSes
+Minimal example showing that `pip install -e git+...` changes line returns in both text and binary files at some point in the unpacking process on Windows OSes
 
-See the GitHub Action cibuil-downstream.yml and run it, it should fail in the `windows-latest` OS, but not in others.
+See the GitHub Action `cibuild-downstream.yml` and run it, it should fail in the `windows-latest` OS, but not in others.
 
 You may try to reproduce on your machine (although I was not successful - maybe it only fails on windows-2019?) with the following commands:
 
